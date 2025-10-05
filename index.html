@@ -70,6 +70,23 @@
             max-width: 100%;
         }
 
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark-grey);
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--tvtc-green);
+        }
+
         /* === القسم الرئيسي (Hero Section) === */
         .hero {
             background-image: linear-gradient(rgba(0, 103, 71, 0.7), rgba(0, 103, 71, 0.7)), url('https://images.unsplash.com/photo-1584697964358-3e14ca57658b?q=80&w=2070&auto=format&fit=crop');
@@ -358,6 +375,7 @@
         .activity-actions {
             display: flex;
             justify-content: space-between;
+            gap: 10px;
         }
 
         .btn {
@@ -372,6 +390,8 @@
             border: none;
             cursor: pointer;
             font-size: 1rem;
+            flex: 1;
+            text-align: center;
         }
 
         .btn:hover {
@@ -547,6 +567,20 @@
             margin-bottom: 25px;
         }
 
+        .success-message {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: var(--light-grey);
+            border-radius: 10px;
+            border: 2px solid var(--accent);
+        }
+
+        .success-message h3 {
+            color: var(--tvtc-green);
+            margin-bottom: 10px;
+        }
+
         /* === قسم النتائج (Dashboard) === */
         .dashboard-container {
             display: grid;
@@ -710,6 +744,12 @@
                 height: 60px;
             }
             
+            .nav-links {
+                gap: 1rem;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
             .hero {
                 min-height: 60vh;
                 padding: 30px 15px;
@@ -757,7 +797,6 @@
             
             .activity-actions {
                 flex-direction: column;
-                gap: 10px;
             }
             
             .trainee-info {
@@ -790,6 +829,11 @@
             .objectives-table {
                 font-size: 0.85rem;
             }
+            
+            .activity-actions .btn {
+                padding: 10px 15px;
+                font-size: 0.9rem;
+            }
         }
         
         @media (prefers-reduced-motion: reduce) {
@@ -809,6 +853,15 @@
         <div class="logo">
             <img src="https://tvtc.gov.sa/Style%20Library/tvtc/images/logo.svg" alt="شعار المؤسسة العامة للتدريب التقني والمهني">
         </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#methodology">المنهجية</a></li>
+                <li><a href="#objectives">الأهداف</a></li>
+                <li><a href="#activities">الأنشطة</a></li>
+                <li><a href="#survey">الاستبيان</a></li>
+                <li><a href="#dashboard">النتائج</a></li>
+            </ul>
+        </nav>
     </header>
 
     <main>
@@ -969,8 +1022,8 @@
                             <span class="skill-tag">التسعير</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn">ابدأ النشاط</button>
-                            <button class="btn btn-outline">عرض التفاصيل</button>
+                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
                 </div>
@@ -997,8 +1050,8 @@
                             <span class="skill-tag">اتخاذ القرار</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn">ابدأ النشاط</button>
-                            <button class="btn btn-outline">عرض التفاصيل</button>
+                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
                 </div>
@@ -1025,8 +1078,8 @@
                             <span class="skill-tag">دراسة الجدوى</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn">ابدأ النشاط</button>
-                            <button class="btn btn-outline">عرض التفاصيل</button>
+                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
                 </div>
@@ -1053,8 +1106,8 @@
                             <span class="skill-tag">العروض الترويجية</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn">ابدأ النشاط</button>
-                            <button class="btn btn-outline">عرض التفاصيل</button>
+                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
                 </div>
@@ -1081,8 +1134,8 @@
                             <span class="skill-tag">التخطيط الرقمي</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn">ابدأ النشاط</button>
-                            <button class="btn btn-outline">عرض التفاصيل</button>
+                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
                 </div>
@@ -1109,8 +1162,8 @@
                             <span class="skill-tag">التخطيط المالي</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn">ابدأ النشاط</button>
-                            <button class="btn btn-outline">عرض التفاصيل</button>
+                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
                 </div>
@@ -1306,6 +1359,12 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- رسالة نجاح بدلاً من زر PDF المعطوب -->
+                    <div class="success-message">
+                        <h3>✅ تم حفظ استبيانك بنجاح</h3>
+                        <p>شكراً لك على مشاركتك القيمة في الاستبيان. تم حفظ جميع بياناتك ونتائجك بنجاح في النظام.</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1395,6 +1454,10 @@
     </footer>
 
     <script>
+        // تخزين بيانات الاستبيانات
+        let surveyReports = JSON.parse(localStorage.getItem('surveyReports')) || [];
+        let completedActivities = JSON.parse(localStorage.getItem('completedActivities')) || [];
+
         // شريط التقدم أثناء التمرير
         window.addEventListener('scroll', function() {
             const winHeight = window.innerHeight;
@@ -1472,6 +1535,45 @@
             });
         });
 
+        // تفعيل أزرار الأنشطة
+        document.querySelectorAll('.start-activity').forEach(button => {
+            button.addEventListener('click', function() {
+                const activityCard = this.closest('.activity-card');
+                const activityTitle = activityCard.querySelector('.activity-title').textContent;
+                
+                this.textContent = 'جارٍ التحميل...';
+                this.disabled = true;
+                
+                // محاكاة تحميل النشاط
+                setTimeout(() => {
+                    this.textContent = 'النشاط مكتمل!';
+                    this.style.background = 'var(--accent)';
+                    this.disabled = false;
+                    
+                    // حفظ النشاط المكتمل
+                    if (!completedActivities.includes(activityTitle)) {
+                        completedActivities.push(activityTitle);
+                        localStorage.setItem('completedActivities', JSON.stringify(completedActivities));
+                    }
+                    
+                    // إظهار رسالة نجاح
+                    alert(`تهانينا! لقد أكملت نشاط "${activityTitle}" بنجاح. يمكنك الآن الانتقال إلى الاستبيان.`);
+                }, 2000);
+            });
+        });
+
+        // تفعيل أزرار عرض التفاصيل
+        document.querySelectorAll('.show-details').forEach(button => {
+            button.addEventListener('click', function() {
+                const activityCard = this.closest('.activity-card');
+                const activityTitle = activityCard.querySelector('.activity-title').textContent;
+                const activityDescription = activityCard.querySelector('.activity-description').textContent;
+                
+                // عرض تفاصيل النشاط في نافذة منبثقة
+                alert(`تفاصيل النشاط: ${activityTitle}\n\n${activityDescription}\n\nيمكنك البدء بالنشاط بالضغط على زر "ابدأ النشاط"`);
+            });
+        });
+
         // معالجة نموذج الاستبيان
         document.getElementById('surveyForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -1487,6 +1589,12 @@
             ratings.forEach(rating => {
                 if (!rating.getAttribute('data-selected')) {
                     allRated = false;
+                    rating.style.border = '2px solid red';
+                    rating.style.borderRadius = '5px';
+                    rating.style.padding = '5px';
+                } else {
+                    rating.style.border = 'none';
+                    rating.style.padding = '0';
                 }
             });
             
@@ -1512,6 +1620,11 @@
                 selectedFields.push(item.getAttribute('data-field'));
             });
             
+            if (selectedFields.length === 0) {
+                alert('يرجى اختيار مجال واحد على الأقل من مجالات سوق العمل');
+                return;
+            }
+            
             // عرض النتائج
             document.getElementById('resultName').textContent = traineeName;
             document.getElementById('resultId').textContent = traineeId;
@@ -1531,6 +1644,21 @@
                 [theoreticalUnderstanding, practicalApplication, activities, evaluation, resources],
                 selectedFields
             );
+            
+            // حفظ بيانات الاستبيان
+            const surveyData = {
+                name: traineeName,
+                id: traineeId,
+                courseRelevance: courseRelevance + '%',
+                skillsApplied: skillsApplied + '%',
+                satisfaction: traineeSatisfaction + '/5',
+                completion: Math.round((completedActivities.length / 6) * 100) + '%',
+                date: new Date().toLocaleDateString('ar-SA')
+            };
+            
+            // حفظ في localStorage
+            surveyReports.push(surveyData);
+            localStorage.setItem('surveyReports', JSON.stringify(surveyReports));
         });
 
         // إنشاء الرسوم البيانية الشخصية
