@@ -581,6 +581,64 @@
             margin-bottom: 10px;
         }
 
+        /* === قسم استبيان Microsoft Forms === */
+        .forms-section {
+            background: var(--light-grey);
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .forms-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            padding: 50px 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .forms-icon {
+            font-size: 4rem;
+            color: var(--tvtc-green);
+            margin-bottom: 25px;
+            display: block;
+        }
+
+        .forms-title {
+            color: var(--tvtc-green);
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .forms-description {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .forms-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--tvtc-green);
+            color: white;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .forms-btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
         /* === قسم النتائج (Dashboard) === */
         .dashboard-container {
             display: grid;
@@ -806,6 +864,14 @@
             .survey-container {
                 padding: 25px;
             }
+            
+            .forms-container {
+                padding: 30px 25px;
+            }
+            
+            .forms-icon {
+                font-size: 3rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -834,6 +900,11 @@
                 padding: 10px 15px;
                 font-size: 0.9rem;
             }
+            
+            .forms-btn {
+                padding: 12px 20px;
+                font-size: 1rem;
+            }
         }
         
         @media (prefers-reduced-motion: reduce) {
@@ -859,6 +930,7 @@
                 <li><a href="#objectives">الأهداف</a></li>
                 <li><a href="#activities">الأنشطة</a></li>
                 <li><a href="#survey">الاستبيان</a></li>
+                <li><a href="#forms">الاستبيان الرسمي</a></li>
                 <li><a href="#dashboard">النتائج</a></li>
             </ul>
         </nav>
@@ -975,7 +1047,7 @@
                             <td>تطبيق المفاهيم الهندسية في التصميم والتخطيط وحساب المساحات والحجوم.</td>
                             <td>
                                 <ul class="objectives-list">
-                                    <li>التخطيط العمراني: تصميم المدن الذكية والاقتصادية (مثل نيوم ومشروع البحر الأحمر).</li>
+                                    <li>التخطيط العمراني: تصميم المدن الذكية والاقتصادية (م مثل نيوم ومشروع البحر الأحمر).</li>
                                     <li>التطوير العقاري: حساب مساحات الأراضي والمباني.</li>
                                     <li>التصنيع: تصميم المنتجات والنماذج الأولية ثلاثية الأبعاد.</li>
                                 </ul>
@@ -989,7 +1061,7 @@
         <!-- قسم الأنشطة التفاعلية -->
         <section id="activities" class="section activities-section">
             <h2 class="section-title">الأنشطة العملية التفاعلية</h2>
-            <p class="section-subtitle">طبقي ما تعلمتيه من خلال أنشطة عملية تناسب اهتماماتك وتطور مهاراتك</p>
+            <p class="section-subtitle">طبيقي ما تعلمتيه من خلال أنشطة عملية تناسب اهتماماتك وتطور مهاراتك</p>
 
             <div class="categories">
                 <button class="category-btn active" data-category="all">جميع الفئات</button>
@@ -1366,6 +1438,22 @@
                         <p>شكراً لك على مشاركتك القيمة في الاستبيان. تم حفظ جميع بياناتك ونتائجك بنجاح في النظام.</p>
                     </div>
                 </div>
+            </div>
+        </section>
+
+        <!-- قسم استبيان Microsoft Forms -->
+        <section id="forms" class="forms-section">
+            <div class="forms-container">
+                <i class="fas fa-file-alt forms-icon"></i>
+                <h2 class="forms-title">استبيان قياس رضا المتدربات الرسمي</h2>
+                <p class="forms-description">
+                    انضمي إلى الاستبيان الرسمي على منصة Microsoft Forms للمساهمة في تحسين جودة التدريب 
+                    وتطوير المقررات بما يتناسب مع متطلبات سوق العمل
+                </p>
+                <a href="https://forms.office.com/r/zXFP4Ve2mQ?origin=lprLink" target="_blank" class="forms-btn">
+                    <i class="fab fa-microsoft"></i>
+                    الانتقال إلى الاستبيان الرسمي
+                </a>
             </div>
         </section>
 
