@@ -1094,7 +1094,7 @@
                             <span class="skill-tag">التسعير</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn start-activity" data-activity="activity1">ابدأ النشاط</button>
                             <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
@@ -1122,7 +1122,7 @@
                             <span class="skill-tag">اتخاذ القرار</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn start-activity" data-activity="activity2">ابدأ النشاط</button>
                             <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
@@ -1150,7 +1150,7 @@
                             <span class="skill-tag">دراسة الجدوى</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn start-activity" data-activity="activity3">ابدأ النشاط</button>
                             <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
@@ -1178,7 +1178,7 @@
                             <span class="skill-tag">العروض الترويجية</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn start-activity" data-activity="activity4">ابدأ النشاط</button>
                             <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
@@ -1206,7 +1206,7 @@
                             <span class="skill-tag">التخطيط الرقمي</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn start-activity" data-activity="activity5">ابدأ النشاط</button>
                             <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
@@ -1234,7 +1234,7 @@
                             <span class="skill-tag">التخطيط المالي</span>
                         </div>
                         <div class="activity-actions">
-                            <button class="btn start-activity">ابدأ النشاط</button>
+                            <button class="btn start-activity" data-activity="activity6">ابدأ النشاط</button>
                             <button class="btn btn-outline show-details">عرض التفاصيل</button>
                         </div>
                     </div>
@@ -1623,30 +1623,13 @@
             });
         });
 
-        // تفعيل أزرار الأنشطة
+        // تفعيل أزرار الأنشطة - التعديل الرئيسي هنا
         document.querySelectorAll('.start-activity').forEach(button => {
             button.addEventListener('click', function() {
-                const activityCard = this.closest('.activity-card');
-                const activityTitle = activityCard.querySelector('.activity-title').textContent;
+                const activityFile = this.getAttribute('data-activity') + '.html';
                 
-                this.textContent = 'جارٍ التحميل...';
-                this.disabled = true;
-                
-                // محاكاة تحميل النشاط
-                setTimeout(() => {
-                    this.textContent = 'النشاط مكتمل!';
-                    this.style.background = 'var(--accent)';
-                    this.disabled = false;
-                    
-                    // حفظ النشاط المكتمل
-                    if (!completedActivities.includes(activityTitle)) {
-                        completedActivities.push(activityTitle);
-                        localStorage.setItem('completedActivities', JSON.stringify(completedActivities));
-                    }
-                    
-                    // إظهار رسالة نجاح
-                    alert(`تهانينا! لقد أكملت نشاط "${activityTitle}" بنجاح. يمكنك الآن الانتقال إلى الاستبيان.`);
-                }, 2000);
+                // فتح النشاط في صفحة جديدة
+                window.open(activityFile, '_blank', 'width=1200,height=800,scrollbars=yes');
             });
         });
 
