@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة حساب على السوشيال ميديا - تحليل أداء الإنستغرام</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === إعدادات عامة === */
+        :root {
+            --tvtc-green: #006747;
+            --dark-grey: #333333;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+            --accent: #00a86b;
+            --secondary: #4a90a4;
+            --warning: #f39c12;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+            color: var(--dark-grey);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to left, var(--tvtc-green), var(--accent));
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--tvtc-green);
+        }
+        
+        h1 {
+            color: var(--tvtc-green);
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+        
+        h2 i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+        
+        h3 {
+            color: var(--dark-grey);
+            margin: 20px 0 10px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--tvtc-green);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--tvtc-green);
+            box-shadow: 0 0 0 2px rgba(0, 103, 71, 0.2);
+            outline: none;
+        }
+        
+        .info-section {
+            background: linear-gradient(to left, #f0f7f4, #e8f4f0);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--tvtc-green);
+        }
+        
+        .instructions {
+            background-color: #fff9e6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning);
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .section-number {
+            background-color: var(--tvtc-green);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: var(--tvtc-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+        }
+        
+        button:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button.print {
+            background-color: var(--secondary);
+        }
+        
+        button.print:hover {
+            background-color: #5ca4b8;
+        }
+        
+        ul, ol {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .time-slot {
+            flex: 1;
+            min-width: 120px;
+            background: #f0f7f4;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            input, select, textarea {
+                border: none;
+                background: transparent;
+            }
+            
+            .btn-group {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .time-slots {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-instagram"></i> ورقة عمل: تحليل أداء - إدارة حساب على السوشيال ميديا</h1>
+            <p>(التخطيط المالي - حساب التكاليف - دراسة الجدوى)</p>
+        </header>
+        
+        <section class="info-section">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> المعلومات الأساسية</h2>
+                <div class="section-number">1</div>
+            </div>
+            <table>
+                <tr>
+                    <td>اسم المتدربة</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>الرقم التدريبي</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>اسم المقرر</td>
+                    <td>رياض 101 - الرياضيات العامة</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye"></i> المشروع: تحليل أداء حساب إنستغرام وهمي</h2>
+                <div class="section-number">2</div>
+            </div>
+            <h3>أهداف المشروع:</h3>
+            <ul>
+                <li>تتبع عدد المتابعين يومياً</li>
+                <li>حساب نسبة التفاعل</li>
+                <li>تحليل أفضل أوقات النشر</li>
+                <li>تحليل الإحصائيات والنسب المئوية</li>
+                <li>التخطيط الرقمي للمحتوى</li>
+            </ul>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-users"></i> الجزء الأول: تتبع المتابعين والنمو</h2>
+                <div class="section-number">3</div>
+            </div>
+            
+            <p>اسم الحساب الوهمي: <input type="text" placeholder="_________________________"></p>
+            <p>مجال الحساب: <input type="text" placeholder="_________________________"></p>
+            
+            <h3>تتبع عدد المتابعين أسبوعياً:</h3>
+            <table>
+                <tr>
+                    <th>اليوم</th>
+                    <th>عدد المتابعين</th>
+                    <th>التغيير</th>
+                    <th>نسبة النمو</th>
+                </tr>
+                <tr>
+                    <td>اليوم 1</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>اليوم 2</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>اليوم 3</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>اليوم 4</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>اليوم 5</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>اليوم 6</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>اليوم 7</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-heart"></i> الجزء الثاني: حساب نسبة التفاعل</h2>
+                <div class="section-number">4</div>
+            </div>
+            
+            <h3>تحليل تفاعل المنشورات:</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>نوع المنشور</th>
+                    <th>عدد الإعجابات</th>
+                    <th>عدد التعليقات</th>
+                    <th>عدد المشاركات</th>
+                    <th>عدد المشاهدات (ريلز)</th>
+                    <th>نسبة التفاعل</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" placeholder="صورة"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" placeholder="ريلز"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" placeholder="ستوري"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" placeholder="بث مباشر"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+            </table>
+            
+            <h3>متوسط نسبة التفاعل حسب نوع المنشور:</h3>
+            <table>
+                <tr>
+                    <th>نوع المنشور</th>
+                    <th>متوسط نسبة التفاعل</th>
+                    <th>الأكثر تفاعلاً</th>
+                </tr>
+                <tr>
+                    <td>الصور</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الريلز</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الستوريات</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>البث المباشر</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-clock"></i> الجزء الثالث: تحليل أفضل أوقات النشر</h2>
+                <div class="section-number">5</div>
+            </div>
+            
+            <h3>تفاعل المنشورات حسب الوقت:</h3>
+            <div class="time-slots">
+                <div class="time-slot">
+                    <h4>6-9 صباحاً</h4>
+                    <p>نسبة التفاعل: <input type="number" placeholder="0"> %</p>
+                </div>
+                <div class="time-slot">
+                    <h4>9-12 ظهراً</h4>
+                    <p>نسبة التفاعل: <input type="number" placeholder="0"> %</p>
+                </div>
+                <div class="time-slot">
+                    <h4>12-3 عصراً</h4>
+                    <p>نسبة التفاعل: <input type="number" placeholder="0"> %</p>
+                </div>
+                <div class="time-slot">
+                    <h4>3-6 مساءً</h4>
+                    <p>نسبة التفاعل: <input type="number" placeholder="0"> %</p>
+                </div>
+                <div class="time-slot">
+                    <h4>6-9 مساءً</h4>
+                    <p>نسبة التفاعل: <input type="number" placeholder="0"> %</p>
+                </div>
+                <div class="time-slot">
+                    <h4>9-12 ليلاً</h4>
+                    <p>نسبة التفاعل: <input type="number" placeholder="0"> %</p>
+                </div>
+            </div>
+            
+            <h3>أفضل أيام النشر:</h3>
+            <table>
+                <tr>
+                    <th>اليوم</th>
+                    <th>متوسط نسبة التفاعل</th>
+                    <th>ملاحظات</th>
+                </tr>
+                <tr>
+                    <td>السبت</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الأحد</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الإثنين</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الثلاثاء</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الأربعاء</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الخميس</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الجمعة</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-chart-pie"></i> الجزء الرابع: التخطيط الرقمي والاستنتاجات</h2>
+                <div class="section-number">6</div>
+            </div>
+            
+            <h3>النتائج المستخلصة:</h3>
+            <ol>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+            </ol>
+            
+            <h3>التوصيات لتحسين الأداء:</h3>
+            <ol>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+            </ol>
+            
+            <h3>أفضل وقت للنشر:</h3>
+            <p><input type="text" placeholder="_________________________"></p>
+            
+            <h3>نوع المحتوى الأكثر تفاعلاً:</h3>
+            <p><input type="text" placeholder="_________________________"></p>
+            
+            <h3>خطة المحتوى للأسبوع القادم:</h3>
+            <textarea placeholder="............................." rows="4"></textarea>
+        </section>
+        
+        <section class="instructions">
+            <h2><i class="fas fa-info-circle"></i> تعليمات التسليم:</h2>
+            <ul>
+                <li>ترسل قبل تاريخ التسليم المحدد</li>
+                <li>يجب أن تكون جميع الحسابات دقيقة</li>
+                <li>يتم تعبئة الورقة إلكترونياً ومن ثم طباعة الورقة من الأيقونة بالأسفل وإرسالها عن طريق البلاك بورد</li>
+
+            </ul>
+        </section>
+        
+        <div class="btn-group">
+            <button onclick="window.print()" class="print">
+                <i class="fas fa-print"></i> طباعة الورقة
+            </button>
+            <button onclick="clearForm()">
+                <i class="fas fa-eraser"></i> مسح النموذج
+            </button>
+        </div>
+        
+        <footer>
+            <p>© 2025 - المدربة: شروق الحربي</p>
+        </footer>
+    </div>
+
+    <script>
+        // دالة لمسح النموذج
+        function clearForm() {
+            if(confirm('هل أنت متأكد من رغبتك في مسح جميع البيانات؟')) {
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                
+                const textareas = document.querySelectorAll('textarea');
+                textareas.forEach(textarea => {
+                    textarea.value = '';
+                });
+            }
+        }
+        
+        // إضافة تأثيرات تفاعلية عند التركيز على الحقول
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.backgroundColor = '#f0f7f4';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

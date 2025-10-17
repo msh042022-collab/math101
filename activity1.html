@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ورقة عمل مشروع: إدارة متجر إلكتروني على الإنستغرام</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --tvtc-green: #006747;
+            --dark-grey: #333333;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+            --accent: #00a86b;
+            --secondary: #4a90a4;
+            --warning: #f39c12;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        body {
+            background-color: var(--white);
+            color: var(--dark-grey);
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to left, var(--tvtc-green), var(--accent));
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--tvtc-green);
+        }
+        
+        h1 {
+            color: var(--tvtc-green);
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+        
+        h2 i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+        
+        h3 {
+            color: var(--dark-grey);
+            margin: 20px 0 10px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--tvtc-green);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+        
+        input:focus, select:focus {
+            border-color: var(--tvtc-green);
+            box-shadow: 0 0 0 2px rgba(0, 103, 71, 0.2);
+            outline: none;
+        }
+        
+        .info-section {
+            background: linear-gradient(to left, #f0f7f4, #e8f4f0);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--tvtc-green);
+        }
+        
+        .instructions {
+            background-color: #fff9e6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning);
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .section-number {
+            background-color: var(--tvtc-green);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: var(--tvtc-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+        }
+        
+        button:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button.print {
+            background-color: var(--secondary);
+        }
+        
+        button.print:hover {
+            background-color: #5ca4b8;
+        }
+        
+        ul, ol {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            input, select {
+                border: none;
+                background: transparent;
+            }
+            
+            .btn-group {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-store"></i> ورقة عمل: مشروع - إدارة متجر إلكتروني على الإنستغرام</h1>
+            <p>(حساب النسب - إدارة التكاليف - التسعير)</p>
+        </header>
+        
+        <section class="info-section">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> المعلومات الأساسية</h2>
+                <div class="section-number">1</div>
+            </div>
+            <table>
+                <tr>
+                    <td>اسم المتدربة</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>الرقم التدريبي</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>اسم المقرر</td>
+                    <td>رياض 101 - الرياضيات العامة</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye"></i> المشروع: إنشاء متجر وهمي على الإنستغرام</h2>
+                <div class="section-number">2</div>
+            </div>
+            <h3>أهداف المشروع:</h3>
+            <ul>
+                <li>تطبيق مفاهيم الرياضيات في بيئة عملية</li>
+                <li>فهم أساسيات إدارة التكاليف والتسعير</li>
+                <li>تطوير مهارات حساب النسب والربحية</li>
+            </ul>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-boxes"></i> الجزء الأول: تحديد المنتجات وأسعارها</h2>
+                <div class="section-number">3</div>
+            </div>
+            <p>اسم المتجر الوهمي: <input type="text" placeholder="_________________________"></p>
+            <p>اختصاص المتجر: <input type="text" placeholder="_________________________"></p>
+            
+            <h3>جدول المنتجات:</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>اسم المنتج</th>
+                    <th>تكلفة الشراء (من المورد)</th>
+                    <th>السعر الأساسي للبيع</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> الجزء الثاني: حساب التكاليف الإضافية</h2>
+                <div class="section-number">4</div>
+            </div>
+            
+            <h3>تكاليف الشحن:</h3>
+            <p>تكلفة الشحن للطلب الواحد: <input type="number" placeholder="0"> ريال</p>
+            <p>حد الطلب للتوصيل المجاني: <input type="number" placeholder="0"> ريال</p>
+            
+            <h3>الضرائب:</h3>
+            <p>نسبة ضريبة القيمة المضافة: <input type="number" placeholder="0"> %</p>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-tags"></i> الجزء الثالث: العروض الترويجية</h2>
+                <div class="section-number">5</div>
+            </div>
+            
+            <h3>العرض الترويجي المختار:</h3>
+            <p>نوع العرض: خصم <input type="number" placeholder="0"> %</p>
+            <p>مدة العرض: <input type="text" placeholder="_________________________"></p>
+            
+            <h3>حساب الأسعار بعد الخصم:</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>اسم المنتج</th>
+                    <th>السعر الأساسي</th>
+                    <th>السعر بعد الخصم</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" placeholder="اسم المنتج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> الجزء الرابع: التحليل المالي</h2>
+                <div class="section-number">6</div>
+            </div>
+            
+            <h3>تحليل طلبية وهمية (اختيار 3 منتجات على الأقل):</h3>
+            <p>المنتجات المختارة: <input type="text" placeholder="_________________________"></p>
+            
+            <h3>الحسابات:</h3>
+            <table>
+                <tr>
+                    <td>1. إجمالي تكلفة المنتجات</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>2. تكلفة الشحن</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>3. إجمالي التكاليف قبل الضريبة</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>4. سعر البيع بعد الخصم</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>5. قيمة الضريبة</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>6. السعر النهائي للعميل</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>7. صافي الربح</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+            </table>
+            
+            <h3>حساب النسب:</h3>
+            <table>
+                <tr>
+                    <td>هامش الربح الإجمالي</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>نسبة صافي الربح</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section class="instructions">
+            <h2><i class="fas fa-info-circle"></i> تعليمات التسليم:</h2>
+            <ul>
+                <li>ترسل قبل تاريخ التسليم المحدد</li>
+                <li>يجب أن تكون جميع الحسابات دقيقة</li>
+                <li>يتم تعبئة الورقة إلكترونياً ومن ثم طباعة الورقة من الأيقونة بالأسفل وإرسالها عن طريق البلاك بورد</li>
+
+            </ul>
+        </section>
+        
+        <div class="btn-group">
+            <button onclick="window.print()" class="print">
+                <i class="fas fa-print"></i> طباعة الورقة
+            </button>
+            <button onclick="clearForm()">
+                <i class="fas fa-eraser"></i> مسح النموذج
+            </button>
+        </div>
+        
+        <footer>
+            <p>© 2025 - المدربة: شروق الحربي</p>
+        </footer>
+    </div>
+
+    <script>
+        // دالة لمسح النموذج
+        function clearForm() {
+            if(confirm('هل أنت متأكد من رغبتك في مسح جميع البيانات؟')) {
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+            }
+        }
+        
+        // إضافة تأثيرات تفاعلية عند التركيز على الحقول
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.backgroundColor = '#f0f7ff';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

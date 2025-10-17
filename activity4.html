@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عروض مجموعات التجميل - حساب نسبة التوفير</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === إعدادات عامة === */
+        :root {
+            --tvtc-green: #006747;
+            --dark-grey: #333333;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+            --accent: #00a86b;
+            --secondary: #4a90a4;
+            --warning: #f39c12;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+            color: var(--dark-grey);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to left, var(--tvtc-green), var(--accent));
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--tvtc-green);
+        }
+        
+        h1 {
+            color: var(--tvtc-green);
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+        
+        h2 i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+        
+        h3 {
+            color: var(--dark-grey);
+            margin: 20px 0 10px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--tvtc-green);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--tvtc-green);
+            box-shadow: 0 0 0 2px rgba(0, 103, 71, 0.2);
+            outline: none;
+        }
+        
+        .info-section {
+            background: linear-gradient(to left, #f0f7f4, #e8f4f0);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--tvtc-green);
+        }
+        
+        .instructions {
+            background-color: #fff9e6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning);
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .section-number {
+            background-color: var(--tvtc-green);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: var(--tvtc-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+        }
+        
+        button:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button.print {
+            background-color: var(--secondary);
+        }
+        
+        button.print:hover {
+            background-color: #5ca4b8;
+        }
+        
+        ul, ol {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .example-box {
+            background: linear-gradient(to left, #f9f0f7, #f4e8f0);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+            border-right: 3px solid #e8a4c4;
+        }
+        
+        .offer-cards {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .offer-card {
+            flex: 1;
+            min-width: 250px;
+            background: linear-gradient(135deg, #f9f0f7, #f4e8f0);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border-top: 4px solid #e8a4c4;
+        }
+        
+        .offer-card h4 {
+            margin-top: 0;
+            color: var(--tvtc-green);
+            text-align: center;
+            font-weight: 800;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            input, select, textarea {
+                border: none;
+                background: transparent;
+            }
+            
+            .btn-group {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+            
+            .offer-cards {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-palette"></i> ورقة عمل: حساب النسب - عروض مجموعات التجميل</h1>
+            <p>(حساب النسب - التفكير التسويقي - العروض الترويجية)</p>
+        </header>
+        
+        <section class="info-section">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> المعلومات الأساسية</h2>
+                <div class="section-number">1</div>
+            </div>
+            <table>
+                <tr>
+                    <td>اسم المتدربة</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>الرقم التدريبي</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>اسم المقرر</td>
+                    <td>رياض 101 - الرياضيات العامة</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye"></i> المشروع: عروض مجموعات التجميل</h2>
+                <div class="section-number">2</div>
+            </div>
+            <h3>أهداف المشروع:</h3>
+            <ul>
+                <li>تصميم باقات وعروض خاصة لمنتجات التجميل</li>
+                <li>حساب نسبة التوفير للعملاء</li>
+                <li>تطبيق التفكير التسويقي في تصميم العروض</li>
+                <li>تحليل فعالية العروض الترويجية</li>
+            </ul>
+            
+            <div class="example-box">
+                <h3><i class="fas fa-lightbulb"></i> مثال توضيحي:</h3>
+                <p>إذا كانت الأداة الواحدة بـ 50 ريال</p>
+                <p>سعر مجموعة 3 أدوات = 120 ريال</p>
+                <p>نسبة التوفير = (150 - 120) ÷ 150 × 100 = 20%</p>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-cube"></i> الجزء الأول: تصميم الباقات والعروض</h2>
+                <div class="section-number">3</div>
+            </div>
+            
+            <p>اسم المتجر: <input type="text" placeholder="_________________________"></p>
+            <p>تخصص المتجر: <input type="text" placeholder="_________________________"></p>
+            
+            <h3>المنتجات الفردية وأسعارها:</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>اسم المنتج</th>
+                    <th>السعر الفردي (ريال)</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" placeholder="أحمر شفاه"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" placeholder="ماسكرا"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" placeholder="أيلاينر"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" placeholder="ظل عيون"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" placeholder="كونسيلر"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><input type="text" placeholder="بودرة"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-gift"></i> الجزء الثاني: تصميم مجموعات التجميل</h2>
+                <div class="section-number">4</div>
+            </div>
+            
+            <div class="offer-cards">
+                <div class="offer-card">
+                    <h4>الباقة الأساسية</h4>
+                    <p>المنتجات المضمنة: <input type="text" placeholder="_________________________"></p>
+                    <p>عدد المنتجات: <input type="number" placeholder="0"></p>
+                    <p>سعر الباقة: <input type="number" placeholder="0"> ريال</p>
+                    <p>سعر المنتجات منفردة: <input type="number" placeholder="0"> ريال</p>
+                    <p>قيمة التوفير: <input type="number" placeholder="0"> ريال</p>
+                    <p>نسبة التوفير: <input type="number" placeholder="0"> %</p>
+                </div>
+                
+                <div class="offer-card">
+                    <h4>الباقة المتوسطة</h4>
+                    <p>المنتجات المضمنة: <input type="text" placeholder="_________________________"></p>
+                    <p>عدد المنتجات: <input type="number" placeholder="0"></p>
+                    <p>سعر الباقة: <input type="number" placeholder="0"> ريال</p>
+                    <p>سعر المنتجات منفردة: <input type="number" placeholder="0"> ريال</p>
+                    <p>قيمة التوفير: <input type="number" placeholder="0"> ريال</p>
+                    <p>نسبة التوفير: <input type="number" placeholder="0"> %</p>
+                </div>
+                
+                <div class="offer-card">
+                    <h4>الباقة المميزة</h4>
+                    <p>المنتجات المضمنة: <input type="text" placeholder="_________________________"></p>
+                    <p>عدد المنتجات: <input type="number" placeholder="0"></p>
+                    <p>سعر الباقة: <input type="number" placeholder="0"> ريال</p>
+                    <p>سعر المنتجات منفردة: <input type="number" placeholder="0"> ريال</p>
+                    <p>قيمة التوفير: <input type="number" placeholder="0"> ريال</p>
+                    <p>نسبة التوفير: <input type="number" placeholder="0"> %</p>
+                </div>
+            </div>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> الجزء الثالث: حساب نسبة التوفير</h2>
+                <div class="section-number">5</div>
+            </div>
+            
+            <h3>حساب نسبة التوفير في العروض:</h3>
+            <table>
+                <tr>
+                    <th>نوع الحساب</th>
+                    <th>القيمة</th>
+                </tr>
+                <tr>
+                    <td>متوسط سعر المنتج الواحد</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>متوسط نسبة التوفير في الباقات</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>إجمالي التوفير للعملاء</td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td>متوسط زيادة المبيعات المتوقعة</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+            </table>
+            
+            <h3>مقارنة الباقات:</h3>
+            <table>
+                <tr>
+                    <th>الباقة</th>
+                    <th>نسبة التوفير</th>
+                    <th>الأفضل من حيث القيمة</th>
+                </tr>
+                <tr>
+                    <td>الباقة الأساسية</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الباقة المتوسطة</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>الباقة المميزة</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-chart-bar"></i> الجزء الرابع: التفكير التسويقي والعروض الترويجية</h2>
+                <div class="section-number">6</div>
+            </div>
+            
+            <h3>استراتيجيات التسويق المقترحة:</h3>
+            <ol>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+            </ol>
+            
+            <h3>العروض الترويجية الإضافية:</h3>
+            <table>
+                <tr>
+                    <th>نوع العرض</th>
+                    <th>التفاصيل</th>
+                    <th>التكلفة المتوقعة</th>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="عرض العضويات"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="عرض هدايا مع الباقات"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+                <tr>
+                    <td><input type="text" placeholder="عروض موسمية"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                    <td><input type="number" placeholder="0"> ريال</td>
+                </tr>
+            </table>
+            
+            <h3>النتائج المتوقعة:</h3>
+            <ol>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+            </ol>
+            
+            <h3>الباقة الأكثر جاذبية للعملاء:</h3>
+            <p><input type="text" placeholder="_________________________"></p>
+            
+            <h3>الأسباب وراء هذا الاختيار:</h3>
+            <textarea placeholder="............................." rows="4"></textarea>
+        </section>
+        
+        <section class="instructions">
+            <h2><i class="fas fa-info-circle"></i> تعليمات التسليم:</h2>
+            <ul>
+                <li>ترسل قبل تاريخ التسليم المحدد</li>
+                <li>يجب أن تكون جميع الحسابات دقيقة</li>
+                <li>يتم تعبئة الورقة إلكترونياً ومن ثم طباعة الورقة من الأيقونة بالأسفل وإرسالها عن طريق البلاك بورد</li>
+
+            </ul>
+        </section>
+        
+        <div class="btn-group">
+            <button onclick="window.print()" class="print">
+                <i class="fas fa-print"></i> طباعة الورقة
+            </button>
+            <button onclick="clearForm()">
+                <i class="fas fa-eraser"></i> مسح النموذج
+            </button>
+        </div>
+        
+        <footer>
+            <p>© 2025 - المدربة: شروق الحربي</p>
+        </footer>
+    </div>
+
+    <script>
+        // دالة لمسح النموذج
+        function clearForm() {
+            if(confirm('هل أنت متأكد من رغبتك في مسح جميع البيانات؟')) {
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                
+                const textareas = document.querySelectorAll('textarea');
+                textareas.forEach(textarea => {
+                    textarea.value = '';
+                });
+            }
+        }
+        
+        // إضافة تأثيرات تفاعلية عند التركيز على الحقول
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.backgroundColor = '#f0f7f4';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>

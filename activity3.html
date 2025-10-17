@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تخطيط مشروع صالون تجميل - دراسة جدوى</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* === إعدادات عامة === */
+        :root {
+            --tvtc-green: #006747;
+            --dark-grey: #333333;
+            --light-grey: #f4f4f4;
+            --white: #ffffff;
+            --accent: #00a86b;
+            --secondary: #4a90a4;
+            --warning: #f39c12;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Tajawal', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--white);
+            color: var(--dark-grey);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to left, var(--tvtc-green), var(--accent));
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px dashed var(--tvtc-green);
+        }
+        
+        h1 {
+            color: var(--tvtc-green);
+            margin-bottom: 10px;
+            font-size: 28px;
+            font-weight: 800;
+        }
+        
+        h2 {
+            color: var(--secondary);
+            margin: 25px 0 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+        }
+        
+        h2 i {
+            margin-left: 10px;
+            color: var(--accent);
+        }
+        
+        h3 {
+            color: var(--dark-grey);
+            margin: 20px 0 10px;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        
+        th, td {
+            padding: 12px 15px;
+            text-align: right;
+            border: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: var(--tvtc-green);
+            color: white;
+            font-weight: 600;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        input, select, textarea {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: all 0.3s;
+            font-family: 'Tajawal', sans-serif;
+        }
+        
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--tvtc-green);
+            box-shadow: 0 0 0 2px rgba(0, 103, 71, 0.2);
+            outline: none;
+        }
+        
+        .info-section {
+            background: linear-gradient(to left, #f0f7f4, #e8f4f0);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--tvtc-green);
+        }
+        
+        .instructions {
+            background-color: #fff9e6;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            border-right: 4px solid var(--warning);
+        }
+        
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+        }
+        
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .section-number {
+            background-color: var(--tvtc-green);
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+        
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        button {
+            padding: 10px 20px;
+            background-color: var(--tvtc-green);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Tajawal', sans-serif;
+            font-weight: 700;
+        }
+        
+        button:hover {
+            background-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        button.print {
+            background-color: var(--secondary);
+        }
+        
+        button.print:hover {
+            background-color: #5ca4b8;
+        }
+        
+        ul, ol {
+            padding-right: 20px;
+            margin: 10px 0;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .totals {
+            font-weight: bold;
+            background-color: #e8f4fd;
+        }
+        
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+            
+            input, select, textarea {
+                border: none;
+                background: transparent;
+            }
+            
+            .btn-group {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-spa"></i> ورقة عمل: دراسة جدوى - تخطيط مشروع صالون تجميل  </h1>
+            <p>(التخطيط المالي - حساب التكاليف - دراسة الجدوى)</p>
+        </header>
+        
+        <section class="info-section">
+            <div class="section-header">
+                <h2><i class="fas fa-info-circle"></i> المعلومات الأساسية</h2>
+                <div class="section-number">1</div>
+            </div>
+            <table>
+                <tr>
+                    <td>اسم المتدربة</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>الرقم التدريبي</td>
+                    <td><input type="text" placeholder="............................."></td>
+                </tr>
+                <tr>
+                    <td>اسم المقرر</td>
+                    <td>رياض 101 - الرياضيات العامة</td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-bullseye"></i> المشروع: دراسة جدوى مشروع صالون تجميل</h2>
+                <div class="section-number">2</div>
+            </div>
+            <h3>أهداف المشروع:</h3>
+            <ul>
+                <li>حساب تكلفة الأدوات والمستلزمات</li>
+                <li>تحديد أسعار الخدمات</li>
+                <li>توقع الأرباح الشهرية</li>
+                <li>التخطيط المالي ودراسة الجدوى</li>
+            </ul>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-tools"></i> الجزء الأول: تكاليف الأدوات والمستلزمات</h2>
+                <div class="section-number">3</div>
+            </div>
+            
+            <p>اسم الصالون المقترح: <input type="text" placeholder="_________________________"></p>
+            <p>موقع الصالون: <input type="text" placeholder="_________________________"></p>
+            
+            <h3>جدول تكاليف التأسيس:</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>البند</th>
+                    <th>التكلفة المتوقعة (ريال)</th>
+                    <th>ملاحظات</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" placeholder="أثاث الصالون"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" placeholder="أدوات التجميل"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" placeholder="مستحضرات التجميل"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" placeholder="تكاليف التراخيص"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" placeholder="تكاليف الديكور"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><input type="text" placeholder="تكاليف أخرى"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="text" placeholder="_________________________"></td>
+                </tr>
+                <tr class="totals">
+                    <td colspan="2">المجموع</td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td></td>
+                </tr>
+            </table>
+            
+            <h3>التكاليف الشهرية الثابتة:</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>البند</th>
+                    <th>التكلفة الشهرية (ريال)</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" placeholder="الإيجار"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" placeholder="رواتب الموظفين"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" placeholder="فواتير الخدمات"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" placeholder="تسويق وإعلان"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" placeholder="مستلزمات تشغيل"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr class="totals">
+                    <td colspan="2">المجموع</td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-money-bill-wave"></i> الجزء الثاني: أسعار الخدمات</h2>
+                <div class="section-number">4</div>
+            </div>
+            
+            <h3>جدول أسعار الخدمات:</h3>
+            <table>
+                <tr>
+                    <th>#</th>
+                    <th>نوع الخدمة</th>
+                    <th>السعر (ريال)</th>
+                    <th>التكلفة المتوقعة (ريال)</th>
+                    <th>هامش الربح (ريال)</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td><input type="text" placeholder="قص وتصفيف"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td><input type="text" placeholder="صبغ شعر"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td><input type="text" placeholder="العناية بالبشرة"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td><input type="text" placeholder="مكياج"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td><input type="text" placeholder="العناية بالأظافر"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td><input type="text" placeholder="خدمات أخرى"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> الجزء الثالث: الأرباح الشهرية المتوقعة</h2>
+                <div class="section-number">5</div>
+            </div>
+            
+            <h3>توقع عدد العملاء الشهري:</h3>
+            <p>عدد العملاء المتوقع يومياً: <input type="number" placeholder="0"></p>
+            <p>عدد أيام العمل أسبوعياً: <input type="number" placeholder="0" min="1" max="7"></p>
+            
+            <h3>الإيرادات المتوقعة:</h3>
+            <table>
+                <tr>
+                    <td>متوسط إنفاق العميل (ريال)</td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>إجمالي الإيرادات الشهرية المتوقعة (ريال)</td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>إجمالي التكاليف الشهرية (ريال)</td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+                <tr>
+                    <td>صافي الربح الشهري المتوقع (ريال)</td>
+                    <td><input type="number" placeholder="0"></td>
+                </tr>
+            </table>
+        </section>
+        
+        <section>
+            <div class="section-header">
+                <h2><i class="fas fa-calculator"></i> الجزء الرابع: التخطيط المالي ودراسة الجدوى</h2>
+                <div class="section-number">6</div>
+            </div>
+            
+            <h3>فترة استرداد رأس المال:</h3>
+            <p>فترة الاسترداد المتوقعة (بالأشهر): <input type="number" placeholder="0"></p>
+            
+            <h3>نسب الربحية:</h3>
+            <table>
+                <tr>
+                    <td>نسبة صافي الربح إلى الإيرادات</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+                <tr>
+                    <td>نسبة العائد على الاستثمار (ROI)</td>
+                    <td><input type="number" placeholder="0"> %</td>
+                </tr>
+            </table>
+            
+            <h3>التحليل والتوصيات:</h3>
+            <ol>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+                <li><input type="text" placeholder="............................."></li>
+            </ol>
+            
+            <h3>القرار النهائي:</h3>
+            <p>هل المشروع مجدٍ من الناحية المالية؟ <input type="text" placeholder="_________________________"></p>
+            
+            <h3>ملاحظات إضافية:</h3>
+            <textarea placeholder="............................." rows="4"></textarea>
+        </section>
+        
+        <section class="instructions">
+            <h2><i class="fas fa-info-circle"></i> تعليمات التسليم:</h2>
+            <ul>
+                <li>ترسل قبل تاريخ التسليم المحدد</li>
+                <li>يجب أن تكون جميع الحسابات دقيقة</li>
+                <li>يتم تعبئة الورقة إلكترونياً ومن ثم طباعة الورقة من الأيقونة بالأسفل وإرسالها عن طريق البلاك بورد</li>
+            </ul>
+        </section>
+        
+        <div class="btn-group">
+            <button onclick="window.print()" class="print">
+                <i class="fas fa-print"></i> طباعة الورقة
+            </button>
+            <button onclick="clearForm()">
+                <i class="fas fa-eraser"></i> مسح النموذج
+            </button>
+        </div>
+        
+        <footer>
+            <p>© 2025 - المدربة: شروق الحربي</p>
+        </footer>
+    </div>
+
+    <script>
+        // دالة لمسح النموذج
+        function clearForm() {
+            if(confirm('هل أنت متأكد من رغبتك في مسح جميع البيانات؟')) {
+                const inputs = document.querySelectorAll('input');
+                inputs.forEach(input => {
+                    input.value = '';
+                });
+                
+                const textareas = document.querySelectorAll('textarea');
+                textareas.forEach(textarea => {
+                    textarea.value = '';
+                });
+            }
+        }
+        
+        // إضافة تأثيرات تفاعلية عند التركيز على الحقول
+        document.addEventListener('DOMContentLoaded', function() {
+            const inputs = document.querySelectorAll('input, textarea');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.backgroundColor = '#f0f7f4';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.backgroundColor = '';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
